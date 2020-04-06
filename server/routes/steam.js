@@ -14,7 +14,7 @@ router.get('/player-steam-id', async function (req, res) {
 
 		response = {data: data.response};
 	} catch (e) {
-		console.error(e);
+		console.error(e.response);
 		response = {error: e.message};
 		res.statusCode = 400;
 	}
