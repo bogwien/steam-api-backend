@@ -15,13 +15,18 @@ export default class SteamService {
         this.allowedActions = {
             ISteamUser: {
                 GetPlayerSummaries: {version: 'v2'},
-                ResolveVanityURL: {version: 'v1'}
+                ResolveVanityURL: {version: 'v1'},
+                GetFriendList: {version: 'v1'}
             }
         };
     }
 
     async getPlayerSummaries(steamids) {
         return await this.getData('ISteamUser', 'GetPlayerSummaries', {steamids});
+    }
+
+    async getPlayerFriendList(steamid) {
+      return await this.getData('ISteamUser', 'GetFriendList', {steamid});
     }
 
     async getSteamId(vanityurl) {
@@ -39,9 +44,9 @@ export default class SteamService {
             ...options
         };
 
-        const {data: {response}} = await axios.get(url, {params});
+        const {data} = await axios.get(url, {params});
 
-        return response;
+        return data;
     }
 
     checkAction(i, m) {
