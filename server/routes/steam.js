@@ -79,4 +79,23 @@ router.get('/player-bans', async function (req, res) {
 	res.json(response);
 });
 
+router.get('/user-group-list', async function (req, res) {
+	const {key, steamid, format} = req.query;
+
+	let response = {};
+
+	try {
+		const service = new SteamService(key, format);
+    const data = await service.getUserGroupList(steamid);
+
+		response = {data: data.response};
+	} catch (e) {
+		console.error(e.response);
+		response = {error: e.message};
+		res.statusCode = 400;
+	}
+
+	res.json(response);
+});
+
 export default router;

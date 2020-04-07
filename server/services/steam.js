@@ -17,7 +17,8 @@ export default class SteamService {
                 GetPlayerSummaries: {version: 'v2'},
                 ResolveVanityURL: {version: 'v1'},
                 GetFriendList: {version: 'v1'},
-                GetPlayerBans: {version: 'v1'}
+                GetPlayerBans: {version: 'v1'},
+                GetUserGroupList: {version: 'v1'}
             }
         };
     }
@@ -28,10 +29,14 @@ export default class SteamService {
 
     async getPlayerBans(steamids) {
       return await this.getData('ISteamUser', 'GetPlayerBans', {steamids});
-  }
+    }
 
     async getPlayerFriendList(steamid) {
       return await this.getData('ISteamUser', 'GetFriendList', {steamid});
+    }
+
+    async getUserGroupList(steamid) {
+      return await this.getData('ISteamUser', 'GetUserGroupList', {steamid});
     }
 
     async getSteamId(vanityurl) {
