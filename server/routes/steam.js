@@ -60,4 +60,23 @@ router.get('/player-friend-list', async function (req, res) {
 	res.json(response);
 });
 
+router.get('/player-bans', async function (req, res) {
+	const {key, steamids, format} = req.query;
+
+	let response = {};
+
+	try {
+		const service = new SteamService(key, format);
+		const data = await service.getPlayerBans(steamids);
+
+		response = {data: data.players};
+	} catch (e) {
+		console.error(e.response);
+		response = {error: e.message};
+		res.statusCode = 400;
+	}
+
+	res.json(response);
+});
+
 export default router;
