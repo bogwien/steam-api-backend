@@ -98,4 +98,42 @@ router.get('/user-group-list', async function (req, res) {
 	res.json(response);
 });
 
+router.get('/recently-played-games', async function (req, res) {
+	const {key, steamid, count, format} = req.query;
+
+	let response = {};
+
+	try {
+		const service = new SteamService(key, format);
+    const data = await service.getRecentlyPlayedGames(steamid, count);
+
+		response = {data: data.response};
+	} catch (e) {
+		console.error(e.response);
+		response = {error: e.message};
+		res.statusCode = 400;
+	}
+
+	res.json(response);
+});
+
+router.get('/owned-games', async function (req, res) {
+	const {key, steamid, include_appinfo, include_played_free_games, format} = req.query;
+
+	let response = {};
+
+	try {
+		const service = new SteamService(key, format);
+    const data = await service.getOwnedGames(steamid, include_appinfo, include_played_free_games);
+
+		response = {data: data.response};
+	} catch (e) {
+		console.error(e.response);
+		response = {error: e.message};
+		res.statusCode = 400;
+	}
+
+	res.json(response);
+});
+
 export default router;

@@ -19,6 +19,10 @@ export default class SteamService {
                 GetFriendList: {version: 'v1'},
                 GetPlayerBans: {version: 'v1'},
                 GetUserGroupList: {version: 'v1'}
+            },
+            IPlayerService: {
+              GetRecentlyPlayedGames: {version: 'v1'},
+              GetOwnedGames: {version: 'v1'}
             }
         };
     }
@@ -41,6 +45,14 @@ export default class SteamService {
 
     async getSteamId(vanityurl) {
         return await this.getData('ISteamUser', 'ResolveVanityURL', {vanityurl});
+    }
+
+    async getRecentlyPlayedGames(steamid, count = 0) {
+      return await this.getData('IPlayerService', 'GetRecentlyPlayedGames', {steamid, count});
+    }
+
+    async getOwnedGames(steamid, include_appinfo = true, include_played_free_games = false) {
+      return await this.getData('IPlayerService', 'GetOwnedGames', {steamid, include_appinfo, include_played_free_games});
     }
 
     async getData(i, m, options = {}) {
