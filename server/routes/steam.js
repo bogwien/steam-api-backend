@@ -16,6 +16,10 @@ router.get('/player-steam-id', async function (req, res) {
 	} catch (e) {
 		console.error(e.response);
 		response = {error: e.message};
+    if (e.response) {
+      response.code = e.response.status;
+      response.text = e.response.statusText;
+    }
 		res.statusCode = 400;
 	}
 
@@ -35,6 +39,10 @@ router.get('/player-summaries', async function (req, res) {
 	} catch (e) {
 		console.error(e.response);
 		response = {error: e.message};
+    if (e.response) {
+      response.code = e.response.status;
+      response.text = e.response.statusText;
+    }
 		res.statusCode = 400;
 	}
 
@@ -54,6 +62,10 @@ router.get('/player-friend-list', async function (req, res) {
 	} catch (e) {
 		console.error(e.response);
 		response = {error: e.message};
+    if (e.response) {
+      response.code = e.response.status;
+      response.text = e.response.statusText;
+    }
 		res.statusCode = 400;
 	}
 
@@ -73,6 +85,10 @@ router.get('/player-bans', async function (req, res) {
 	} catch (e) {
 		console.error(e.response);
 		response = {error: e.message};
+    if (e.response) {
+      response.code = e.response.status;
+      response.text = e.response.statusText;
+    }
 		res.statusCode = 400;
 	}
 
@@ -92,6 +108,10 @@ router.get('/user-group-list', async function (req, res) {
 	} catch (e) {
 		console.error(e.response);
 		response = {error: e.message};
+    if (e.response) {
+      response.code = e.response.status;
+      response.text = e.response.statusText;
+    }
 		res.statusCode = 400;
 	}
 
@@ -111,6 +131,10 @@ router.get('/recently-played-games', async function (req, res) {
 	} catch (e) {
 		console.error(e.response);
 		response = {error: e.message};
+    if (e.response) {
+      response.code = e.response.status;
+      response.text = e.response.statusText;
+    }
 		res.statusCode = 400;
 	}
 
@@ -130,6 +154,10 @@ router.get('/owned-games', async function (req, res) {
 	} catch (e) {
 		console.error(e.response);
 		response = {error: e.message};
+    if (e.response) {
+      response.code = e.response.status;
+      response.text = e.response.statusText;
+    }
 		res.statusCode = 400;
 	}
 

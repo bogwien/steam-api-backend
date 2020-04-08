@@ -63,6 +63,7 @@ export default class SteamService {
         const url = this.getUrl(i, m);
         const params = {
             ...this.account,
+            format: this.format,
             ...options
         };
 
